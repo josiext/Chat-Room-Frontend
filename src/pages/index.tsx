@@ -1,27 +1,34 @@
 import { useEffect, useState } from "react";
-import socketIOClient from "socket.io-client";
 import Head from "next/head";
 
 import Chat from "../components/chat";
-import { END_POINTS } from "../configs";
-
-const socket = socketIOClient(END_POINTS.CHAT);
+import { ChatService } from "../services";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [messages, setMessages] = useState<string[]>([]);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
-    socket.on("chat message", (data: string) => {
-      setMessages((prev) => [...prev, data]);
-    });
+    ChatService.lisentMessage((msg) => setMessages((prev) => [...prev, msg]));
   }, []);
 
   const sendMsg = (msg: string) => {
-    if (msg.trim() !== "") socket.emit("chat message", msg);
+    try {
+      ChatService.setUsername("Juan");
+      ChatService.sendMessage(msg);
+      setError("");
+    } catch (e: any) {
+      setError(e.message);
+    }
+  };
+
+  const handleInputMsg = () => {
+    setError("");
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <Head>
         <title>Public Chat</title>
         <meta name="description" content="Public Chat with Socket" />
@@ -29,8 +36,16 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1>Public Chat</h1>
-        <Chat messages={messages} onSubmit={(f: any) => sendMsg(f.msg)} />
+        <div className={styles.container__chat}>
+          <h1>Public Chat</h1>
+          <Chat
+            className={styles.container_chat_messages}
+            messages={messages}
+            error={error}
+            onSubmit={(f: any) => sendMsg(f.msg)}
+            onWriteMsg={handleInputMsg}
+          />
+        </div>
       </main>
     </div>
   );

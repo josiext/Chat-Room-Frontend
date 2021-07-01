@@ -8,7 +8,11 @@ io.on("connection", (socket) => {
   });
 
   socket.on("chat message", (msg) => {
-    io.emit("chat message", msg);
+    console.log(socket.username);
+
+    const data = { msg, user: socket.username };
+
+    io.emit("chat message", data);
   });
 
   socket.on("set username", (username) => {

@@ -1,5 +1,5 @@
 {
-  "name": "public-chat-front",
+  "name": "public-chat",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "@types/react": "17.0.13",
     "eslint": "7.29.0",
     "eslint-config-next": "11.0.1",
+    "prettier": "2.3.2",
     "typescript": "4.3.5"
   }
 }

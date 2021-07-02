@@ -16,8 +16,8 @@
   border-width: 0.13rem;
 }
 
-.styles.container__messages__msg {
-  display: flex;
+.container__messages__msg {
+  padding: 0.2rem;
 }
 
 .container__messages__msg_dark {

@@ -2,13 +2,27 @@ import { useState, useEffect, useRef } from "react";
 
 import styles from "../../styles/Chat.module.css";
 
+export interface MessagesData {
+  user: string;
+  content: string;
+}
+export interface ChatProps {
+  messages: MessagesData[];
+  onSubmit: (msg: string) => unknown;
+  error?: string;
+  className?: string;
+  onWriteMsg?: (s: string) => unknown;
+  info?: string;
+}
+
 export default function Chat({
   messages = [],
   onSubmit = () => undefined,
   error = "",
   className = "",
   onWriteMsg = () => undefined,
-}: any) {
+  info = "",
+}: ChatProps): JSX.Element {
   const [newMsg, setNewMsg] = useState<string>("");
   const refContainerMsg = useRef<HTMLDivElement | null>(null);
 
@@ -26,14 +40,14 @@ export default function Chat({
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    onSubmit({ msg: newMsg });
+    onSubmit(newMsg);
     setNewMsg("");
   };
 
   return (
     <div className={styles.container + " " + className}>
       <div className={styles.container__messages} ref={refContainerMsg}>
-        {messages.map(({ msg, user }: any, idx: number) => (
+        {messages.map(({ content, user }, idx: number) => (
           <div
             key={idx}
             className={
@@ -43,12 +57,14 @@ export default function Chat({
             }
           >
             <span>
-              <b>{user}:</b>
+              <b>{user || "Anonymous"}:</b>
             </span>
-            <span>{" " + msg}</span>
+            <span>{" " + content}</span>
           </div>
         ))}
       </div>
+
+      <small>{info}</small>
 
       <form className={styles.container__form} onSubmit={handleSubmit}>
         <input
@@ -56,7 +72,7 @@ export default function Chat({
           value={newMsg}
           onChange={handleMsg}
           placeholder="message..."
-          maxLength={50}
+          maxLength={100}
         />
         <button type="submit">Send</button>
         <small>{error}</small>

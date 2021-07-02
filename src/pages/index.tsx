@@ -5,7 +5,7 @@ import Chat from "../components/chat";
 import { ChatService } from "../services";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const [messages, setMessages] = useState<string[]>([]);
   const [error, setError] = useState<string>("");
 

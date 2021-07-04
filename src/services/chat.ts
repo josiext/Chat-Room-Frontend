@@ -1,6 +1,11 @@
 import socketIOClient from "socket.io-client";
 import { END_POINTS } from "../configs";
 
+export interface Message {
+  user: string;
+  content: string;
+}
+
 const socket = socketIOClient(END_POINTS.CHAT);
 
 export const onUserConnected = (cb: (u: string) => unknown): void => {
@@ -9,8 +14,8 @@ export const onUserConnected = (cb: (u: string) => unknown): void => {
   });
 };
 
-export const onMessage = (cb: (a: string) => unknown): void => {
-  socket.on("chat message", (data: string) => {
+export const onMessage = (cb: (a: Message) => unknown): void => {
+  socket.on("chat message", (data: Message) => {
     cb && cb(data);
   });
 };

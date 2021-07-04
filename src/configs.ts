@@ -1,3 +1,3 @@
 export const END_POINTS = {
-  CHAT: "http://localhost:4001",
+  CHAT: process.env.BACKEND_URL || "http://localhost:4005",
 };

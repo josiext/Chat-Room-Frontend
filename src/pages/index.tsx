@@ -8,8 +8,8 @@ import Chat, { MessagesData } from "../components/chat";
 import Modal from "../components/modal";
 import UserForm, { UserFormData } from "../components/userForm";
 import { ChatService } from "../services";
-import styles from "../styles/Home.module.css";
-import UserIcon from "../assets/icons/satisfied.svg";
+import styles from "./Home.module.css";
+import UserIcon from "../assets/icons/account.svg";
 
 export default function Home(): JSX.Element {
   const [messages, setMessages] = useState<MessagesData[]>([]);
@@ -96,14 +96,15 @@ export default function Home(): JSX.Element {
           />
         </div>
 
-        <button onClick={() => setModalSignIn(true)}>
-          <Image src={UserIcon} alt="User config" />
+        <button
+          className={styles.config_btn}
+          onClick={() => setModalSignIn(true)}
+        >
+          <Image src={UserIcon} alt="User config" width={30} height={30} />
         </button>
 
         <Modal open={modalSignIn} onClose={handleCloseSignIn}>
-          <div>
-            <UserForm onSubmit={handleUserForm} />
-          </div>
+          <UserForm onSubmit={handleUserForm} />
         </Modal>
       </main>
     </>

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import Input from "../../components/input";
+import styles from "./UserForm.module.css";
+
 export interface UserFormData {
   username: string;
   icon: string | null;
@@ -32,16 +35,18 @@ export default function UserFrom({ onSubmit }: UserFormProps): JSX.Element {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <form onSubmit={handleSubmit} className={styles.container}>
+      <Input
         placeholder="Username..."
         value={username}
         onChange={handleChange(setUsername)}
-        maxLength={20}
+        maxLength={15}
         required
       />
 
-      <button type="submit">Accept</button>
+      <button className={styles.submit_btn} type="submit">
+        Accept
+      </button>
     </form>
   );
 }

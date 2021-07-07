@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
-import styles from "../../styles/Chat.module.css";
+import Input from "../input";
+import styles from "./Chat.module.css";
 
 export interface MessagesData {
   user: string;
@@ -47,19 +48,19 @@ export default function Chat({
   return (
     <div className={styles.container + " " + className}>
       <div className={styles.container__messages} ref={refContainerMsg}>
-        {messages.map(({ content, user }, idx: number) => (
+        {messages.map(({ content, user = "Anonymous" }, idx: number) => (
           <div
             key={idx}
-            className={
-              styles.container__messages__msg +
-              " " +
-              (idx % 2 ? "" : styles.container__messages__msg_dark)
-            }
+            className={`${styles.container__messages__msg} ${
+              idx % 2 ? "" : styles.container__messages__msg_dark
+            }`}
           >
-            <span>
-              <b>{user || "Anonymous"}:</b>
+            <span className={`${styles.msg} ${styles.msg_author}`}>
+              {user}:
             </span>
-            <span>{" " + content}</span>
+            <span className={`${styles.msg} ${styles.msg_content}`}>
+              {" " + content}
+            </span>
           </div>
         ))}
       </div>
@@ -68,18 +69,21 @@ export default function Chat({
 
       <form className={styles.container__form} onSubmit={handleSubmit}>
         <div className={styles.form_input_button}>
-          <input
+          <Input
             className={styles.container__form__input}
             value={newMsg}
             onChange={handleMsg}
             placeholder="message..."
             maxLength={100}
           />
+
           <button type="submit" className={styles.send_msg_btn}>
             Send
           </button>
         </div>
-        <small>{error}</small>
+        <div className={styles.error_container}>
+          <small className={styles.error_message}>{error}</small>
+        </div>
       </form>
     </div>
   );

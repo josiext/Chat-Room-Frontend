@@ -3,18 +3,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f8f8f8;
-  height: 100vh;
+  margin: 0 auto;
   min-width: 400px;
+  max-width: 900px;
   min-height: 400px;
   overflow-x: auto;
+  overflow-y: auto;
 }
 
 .container__chat {
-  border: 0.1rem solid red;
-  border-radius: 0.5rem;
+  border-radius: 15px;
   padding: 1rem;
   background-color: white;
   width: 80%;
-  overflow-x: auto;
+}
+
+.config_btn {
+  margin-top: 3rem;
+  background-color: inherit;
+  border-width: 0;
 }

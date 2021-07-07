@@ -1,0 +1,24 @@
+:root {
+  --primary-color: hsl(0, 100%, 58%);
+  --warning-color: hsl(0, 100%, 58%);
+  --gray-color: hsl(0, 0%, 97%);
+  --darkgray-color: hsl(0, 0%, 66%);
+  --white-color: hsl(360, 100%, 100%);
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--gray-color);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Verdana, sans-serif;
+}

@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 20rem;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+
+.container__messages {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.container__form {
+  background-color: var(--gray-color);
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 15px;
+}
+
+.container__messages__msg {
+  padding: 0.3em;
+  border-radius: 10px;
+}
+
+.form_input_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.send_msg_btn {
+  border-radius: 0.3rem;
+  margin-left: 1rem;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border-width: 0;
+  min-height: 100%;
+  padding: 0.3em;
+}
+
+.container__messages__msg_dark {
+  background-color: var(--gray-color);
+}
+
+.error_container {
+  position: relative;
+}
+
+.error_message {
+  color: var(--warning-color);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.msg {
+  font-size: 12px;
+  color: var(--darkgray-color);
+}
+
+.msg_author {
+  font-weight: 600;
+}

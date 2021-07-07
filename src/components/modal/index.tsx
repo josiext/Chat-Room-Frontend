@@ -1,4 +1,4 @@
-import styles from "../../styles/Modal.module.css";
+import styles from "./Modal.module.css";
 
 interface ModalProps {
   open: boolean;
@@ -8,19 +8,20 @@ interface ModalProps {
 
 export default function Modal({
   open = false,
-  children,
   onClose = () => undefined,
+  children,
 }: ModalProps): JSX.Element {
   if (!open) return <></>;
 
   return (
-    <div id="myModal" className={styles.modal}>
-      <div className={styles["modal-content"]}>
-        <button className={styles.close} onClick={onClose}>
-          &times;
-        </button>
-        <div className="content"></div>
-        {children}
+    <div className={styles.modal}>
+      <div className={styles.modal_content}>
+        <div className={styles.container_close_btn}>
+          <button className={styles.close_btn} onClick={onClose}>
+            X
+          </button>
+        </div>
+        <div className={styles.children_content}>{children}</div>
       </div>
     </div>
   );

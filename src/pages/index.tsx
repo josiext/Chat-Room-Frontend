@@ -1,12 +1,15 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Head from "next/head";
+import Image from "next/image";
 import debounce from "just-debounce-it";
 
+import Title from "../components/title";
 import Chat, { MessagesData } from "../components/chat";
 import Modal from "../components/modal";
 import UserForm, { UserFormData } from "../components/userForm";
 import { ChatService } from "../services";
 import styles from "../styles/Home.module.css";
+import UserIcon from "../assets/icons/satisfied.svg";
 
 export default function Home(): JSX.Element {
   const [messages, setMessages] = useState<MessagesData[]>([]);
@@ -80,7 +83,7 @@ export default function Home(): JSX.Element {
       </Head>
 
       <main id={styles.container}>
-        <h1>Chat Room</h1>
+        <Title subtitle="Public Chat" />
 
         <div className={styles.container__chat}>
           <Chat
@@ -92,15 +95,17 @@ export default function Home(): JSX.Element {
             info={chatInfo}
           />
         </div>
-        <button onClick={() => setModalSignIn(true)}>Login</button>
-        <button onClick={() => setModalSignIn(true)}>Logout</button>
-      </main>
 
-      <Modal open={modalSignIn} onClose={handleCloseSignIn}>
-        <div>
-          <UserForm onSubmit={handleUserForm} />
-        </div>
-      </Modal>
+        <button onClick={() => setModalSignIn(true)}>
+          <Image src={UserIcon} alt="User config" />
+        </button>
+
+        <Modal open={modalSignIn} onClose={handleCloseSignIn}>
+          <div>
+            <UserForm onSubmit={handleUserForm} />
+          </div>
+        </Modal>
+      </main>
     </>
   );
 }

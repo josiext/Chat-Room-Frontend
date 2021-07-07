@@ -67,14 +67,18 @@ export default function Chat({
       <small>{info}</small>
 
       <form className={styles.container__form} onSubmit={handleSubmit}>
-        <input
-          className={styles.container__form__input}
-          value={newMsg}
-          onChange={handleMsg}
-          placeholder="message..."
-          maxLength={100}
-        />
-        <button type="submit">Send</button>
+        <div className={styles.form_input_button}>
+          <input
+            className={styles.container__form__input}
+            value={newMsg}
+            onChange={handleMsg}
+            placeholder="message..."
+            maxLength={100}
+          />
+          <button type="submit" className={styles.send_msg_btn}>
+            Send
+          </button>
+        </div>
         <small>{error}</small>
       </form>
     </div>

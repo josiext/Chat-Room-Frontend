@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "style": "prettier ."
+    "css-lint": "stylelint '**/*.css'",
+    "code-style": "prettier ."
   },
   "dependencies": {
     "just-debounce-it": "1.5.0",
@@ -24,6 +25,8 @@
     "eslint-config-next": "11.0.1",
     "eslint-plugin-react": "7.24.0",
     "prettier": "2.3.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "22.0.0",
     "typescript": "4.3.5"
   }
 }

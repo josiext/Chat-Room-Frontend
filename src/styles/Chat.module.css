@@ -13,11 +13,25 @@
 }
 
 .container__form__input {
-  border-width: 0.13rem;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
+  line-height: 2em;
+  width: 100%;
 }
 
 .container__messages__msg {
   padding: 0.2rem;
+}
+
+.form_input_button {
+  display: flex;
+}
+
+.send_msg_btn {
+  background-color: white;
+  border-width: 0.1rem;
+  border-radius: 0.3rem;
+  margin-left: 1rem;
 }
 
 .container__messages__msg_dark {
